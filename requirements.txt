@@ -1,3 +1,11 @@
 flask
 joblib
 xgboost
+streamlit
+scikit-learn
+numpy
+pandas
+matplotlib
+seaborn
+nltk
+wordcloud
