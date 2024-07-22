@@ -6,7 +6,8 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 
 # Download NLTK stopwords and other necessary datasets
-nltk.download()
+nltk.download('stopwords', quiet=True)
+nltk.download('wordnet', quiet=True)
 
 # Load your model and other necessary components
 try:
