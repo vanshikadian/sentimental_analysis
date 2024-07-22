@@ -10,6 +10,10 @@ nltk.download('stopwords', quiet=True)
 nltk.download('wordnet', quiet=True)
 
 # Load your model and other necessary components
+model = None
+vectorizer = None   
+scaler = None   
+
 try:
     model = pickle.load(open('sentimental_analysis_models/xgb.pkl', 'rb'))
     vectorizer = pickle.load(open('sentimental_analysis_models/countVectorizer.pkl', 'rb'))
