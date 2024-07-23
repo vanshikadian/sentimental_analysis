@@ -52,7 +52,7 @@ if st.button('Predict'):
             st.write(f"Scaled text: {review_scaled}")
             prediction = model.predict(review_scaled)
             
-            result = 'Positive' if prediction[0] == 1 else 'Negative'
+            result = 'Positive' if prediction[0] == 1  else 'Negative'
             st.write(f'Sentiment: {result}')
         except Exception as e:
             st.error(f"Error making prediction: {e}")
