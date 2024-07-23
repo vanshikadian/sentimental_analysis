@@ -4,12 +4,18 @@ import re
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
+import ssl
 
-# Download NLTK stopwords and other necessary datasets
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
+
 nltk.download('stopwords', quiet=True)
 nltk.download('wordnet', quiet=True)
 
-# Load your model and other necessary components
 model = None
 vectorizer = None   
 scaler = None   
@@ -21,7 +27,7 @@ try:
 except Exception as e:
     st.error(f"Error loading model or components: {e}")
 
-# Function to preprocess text
+# preprocessing text
 def preprocess_text(text):
     wordnet = WordNetLemmatizer()
     review = re.sub('[^a-zA-Z]', ' ', text)
@@ -30,14 +36,14 @@ def preprocess_text(text):
     review = [wordnet.lemmatize(word) for word in review if word not in set(stopwords.words('english'))]
     return ' '.join(review)
 
-# Streamlit application
+# streamlit application
 st.title('Sentiment Analysis of Amazon Reviews')
 
 review_text = st.text_area('Enter a review:')
 if st.button('Predict'):
     if review_text:
         try:
-            # Preprocess the input review
+            # preprocessing
             processed_text = preprocess_text(review_text)
             st.write(f"Processed text: {processed_text}")
             review_vectorized = vectorizer.transform([processed_text])
