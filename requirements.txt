@@ -8,4 +8,5 @@ pandas
 matplotlib
 seaborn
 nltk
+imblearn
 wordcloud
